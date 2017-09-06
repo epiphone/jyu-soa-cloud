@@ -63,7 +63,8 @@ function doAjax(url,query,callback,reqtype,getxml)
       							}
     							doCallback(callback, item);
     						}else{
-      							eval(alert(myreq.status));
+                                                    console.error(myreq);
+                                                    alert("Airport not found - try 'Helsinki Vantaa' for example");
     						}
  						}
 					}

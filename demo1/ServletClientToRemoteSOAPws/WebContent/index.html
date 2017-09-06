@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title></title>
+<title>Runway length</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <script language="JavaScript" src="myAJAXlib.js">
 </script>
@@ -12,12 +12,17 @@
 </head>
 <body> 
 
-<h1><b>My simple client to a Temperature Unit Converter SOAP WS</b></h1>
-<p></p>
+<h1><b>Runway length client</b></h1>
+<p>
+    The service first searches for the given airport from the <a href='http://www.webservicex.net/New/Home/ServiceDetail/20'>Airport Information Webservice</a>.
+    Runway length is then parsed from the return value and converted into metres via the <a href='http://www.webservicex.net/New/Home/ServiceDetail/21'>Length/Distance Unit Convertor</a>.    
+</p>
 
 <div id="div1">
-   <input type="text" id="t1" value="" style="width:100"> DEGREE CELSIUS =  <input type="text" id="t2" value="" style="width:100" disabled> DEGREE FAHRENHEIT 
-   <input type="button" id="b1" value="Convert"  onclick="doQuery();" style="width:100">
+   CITY/AIRPORT NAME <input type="text" id="t1" value="" style="width:100"> 
+   <input type="button" id="b1" value="Get runway length" onclick="doQuery();" style="width:200">
+   <br/>
+   <input type="text" id="t2" value="" style="width:100" disabled> RUNWAY LENGTH (m) 
 </div>
 
 
