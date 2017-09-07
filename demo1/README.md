@@ -7,4 +7,4 @@ Fetches airport runway lengths in metres.
 3. Runway length is parsed from the airport information and converted into metres via the Length/Distance Unit Convertor Webservice
 4. Converted runway length is returned back to the frontend
 
-The main action happens at `[./ServletClientToRemoteSOAPws/src/clientToSOAPws/SOAPwsClient.java](./ServletClientToRemoteSOAPws/src/clientToSOAPws/SOAPwsClient.java)`.
+The main logic is implemented at [`SOAPwsClient.java`](ServletClientToRemoteSOAPws/src/clientToSOAPws/SOAPwsClient.java).
