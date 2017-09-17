@@ -5,8 +5,6 @@ import java.net.URISyntaxException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.webservice_airport.Airport;
-import net.webservice_airport.AirportSoap;
 import net.webservice_distance.LengthUnit;
 import net.webservice_distance.LengthUnitSoap;
 import net.webservice_distance.Lengths;
@@ -16,17 +14,10 @@ public class SOAPwsClient {
 	public SOAPwsClient(){}
 	
 	public String sendRequest(String str) throws URISyntaxException, IOException {	
-                Airport airport = new Airport();
-                AirportSoap airportSOAP = airport.getAirportSoap();
-                String airportInfo = airportSOAP.getAirportInformationByCityOrAirportName(str);
-                int runwayLength = this.parseRunwayLength(airportInfo);
-                if (runwayLength < 0) {
-                    return null;
-                }
-                
+                double random = 12; // TODO
                 LengthUnit lengthUnit = new LengthUnit();
                 LengthUnitSoap lengthUnitSOAP = lengthUnit.getLengthUnitSoap();
-                double lengthInMeters = lengthUnitSOAP.changeLengthUnit(runwayLength, Lengths.FEET, Lengths.METERS);
+                double lengthInMeters = lengthUnitSOAP.changeLengthUnit(random, Lengths.FEET, Lengths.METERS);
                 return ""+lengthInMeters;
 	}
         
