@@ -19,11 +19,11 @@
             <classpath path="${java.home}/../lib/tools.jar:${build.classes.dir}:${j2ee.platform.wsgen.classpath}:${javac.classpath}"/>
         </taskdef>
     </target>
-    <target name="wsgen-RandomWebService" depends="wsgen-init">
+    <target name="wsgen-RandomWebServiceImpl" depends="wsgen-init">
         <copy todir="${build.classes.dir}/META-INF">
-            <fileset dir="${webinf.dir}" includes="wsit-RandomWebService.RandomWebService.xml"/>
+            <fileset dir="${webinf.dir}" includes="wsit-RandomWebService.RandomWebServiceImpl.xml"/>
         </copy>
-        <wsgen sourcedestdir="${build.generated.sources.dir}/jax-ws" resourcedestdir="${build.generated.sources.dir}/jax-ws/resources/" destdir="${build.generated.sources.dir}/jax-ws" verbose="true" keep="true" genwsdl="true" sei="RandomWebService.RandomWebService" xendorsed="true">
+        <wsgen sourcedestdir="${build.generated.sources.dir}/jax-ws" resourcedestdir="${build.generated.sources.dir}/jax-ws/resources/" destdir="${build.generated.sources.dir}/jax-ws" verbose="true" keep="true" genwsdl="true" sei="RandomWebService.RandomWebServiceImpl" xendorsed="true">
             <classpath path="${java.home}/../lib/tools.jar:${build.classes.dir}:${j2ee.platform.wsgen.classpath}:${javac.classpath}"/>
         </wsgen>
     </target>
@@ -32,4 +32,48 @@
                 JAX-WS WSIMPORT SECTION
                 ===================
             -->
+    <target name="wsimport-init" depends="init">
+        <fail if="${wsimport.bad.version}" message="WsImport ant task defined in the classpath ${j2ee.platform.wsimport.classpath} has a serious bug. See http://wiki.netbeans.org/MetroIssue for details."/>
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <property name="j2ee.platform.wsimport.classpath" value="${libs.jaxws21.classpath}"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${java.home}/../lib/tools.jar:${j2ee.platform.wsimport.classpath}:${javac.classpath}"/>
+        </taskdef>
+        <condition property="conf-dir" value="${conf.dir}/" else="">
+            <isset property="conf.dir"/>
+        </condition>
+    </target>
+    <target name="wsimport-client-random" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/random"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/random" destdir="${build.generated.dir}/jax-wsCache/random" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/random/wsdl/localhost_9999/ws/random.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9999/ws/random?wsdl" xnocompile="true" xendorsed="true" package="RandomWebServiceClient" target="2.1">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/random/wsdl/localhost_9999/ws/random.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/random"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/random">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-random" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/RandomWebServiceClient"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/random"/>
+    </target>
+    <target name="wsimport-client-random_1" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/random_1"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/random_1" destdir="${build.generated.dir}/jax-wsCache/random_1" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/random_1/wsdl/random.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="file:/home/aleksi/koodi/jyu-soa-cloud/demo2/WebServiceWithWEBAPI/xml-resources/web-service-references/random/wsdl/localhost_9999/ws/random.wsdl" xnocompile="true" xendorsed="true" package="RandomWebServiceClient2" target="2.1">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/random_1/wsdl/random.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/random_1"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/random_1">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-random_1" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/RandomWebServiceClient2"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/random_1"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-random, wsimport-client-random_1"/>
 </project>

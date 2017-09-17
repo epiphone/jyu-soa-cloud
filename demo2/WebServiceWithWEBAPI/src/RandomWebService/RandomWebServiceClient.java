@@ -13,7 +13,7 @@ import RandomWebService.RandomWebService;
 public class RandomWebServiceClient {
     public static double randomNumber(double min, double max) throws Exception {
 	URL url = new URL("http://localhost:9999/ws/random?wsdl");
-        QName qname = new QName("http://RandomWebService", "RandomWebService");
+        QName qname = new QName("http://RandomWebService/", "RandomWebServiceImplService");
         Service service = Service.create(url, qname);
 
         RandomWebService randomWS = service.getPort(RandomWebService.class);

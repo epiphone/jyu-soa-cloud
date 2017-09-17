@@ -14,8 +14,8 @@ public class SOAPwsClient {
 
 	public SOAPwsClient(){}
 	
-	public String sendRequest(String str) throws URISyntaxException, IOException {	
-                double random;
+	public String sendRequest(String str) throws URISyntaxException {	
+            double random;
             try {
                 random = RandomWebServiceClient.randomNumber(0, 1000);
                 LengthUnit lengthUnit = new LengthUnit();

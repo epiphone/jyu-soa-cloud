@@ -5,19 +5,16 @@
  */
 package RandomWebService;
 
-import javax.jws.WebService;
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
 
-/**
- *
- * @author aleksi
- */
-@WebService(serviceName = "RandomWebService")
-public class RandomWebService {
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
+import javax.jws.soap.SOAPBinding.Style;
+
+//Service Endpoint Interface
+@WebService
+@SOAPBinding(style = Style.RPC)
+public interface RandomWebService {
     
-    @WebMethod(operationName = "randomNumber")
-    public Double randomNumber(@WebParam(name = "min") double min, @WebParam(name = "max") double max) {
-        return Math.random() * max + min;
-    }
+    @WebMethod Double randomNumber(double min, double max);
 }
