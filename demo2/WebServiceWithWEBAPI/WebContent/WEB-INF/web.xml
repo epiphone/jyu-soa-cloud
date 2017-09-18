@@ -8,9 +8,22 @@
         <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>ServletAdaptor</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>RandomWebService.ApplicationConfig</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RandomWebServiceImpl</servlet-name>
         <url-pattern>/RandomWebServiceImpl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAdaptor</servlet-name>
+        <url-pattern>/webresources/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
