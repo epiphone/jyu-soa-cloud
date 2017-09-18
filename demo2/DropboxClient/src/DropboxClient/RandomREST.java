@@ -5,6 +5,8 @@
  */
 package DropboxClient;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,7 +38,14 @@ public class RandomREST {
 
     @GET
     @Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
-    public String getJson() {
-        return "todo";
+    public String getJson(@QueryParam("code") String code) {
+        DropboxClient cli = new DropboxClient();
+        try {
+            String token = cli.accessToken(code);
+            return code + token;
+        } catch (Exception ex) {
+            Logger.getLogger(RandomREST.class.getName()).log(Level.SEVERE, null, ex);
+            return "fail";
+        }
     }
 }
