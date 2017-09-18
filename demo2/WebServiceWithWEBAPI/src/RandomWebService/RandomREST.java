@@ -16,6 +16,8 @@ import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
 import net.webservice_distance.LengthUnit;
 import net.webservice_distance.LengthUnitSoap;
 import net.webservice_distance.Lengths;
@@ -42,6 +44,10 @@ public class RandomREST {
     @GET
     @Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
     public Double[] getJson(@DefaultValue("0") @QueryParam("min") double min, @DefaultValue("1000") @QueryParam("max") double max) {
+        if (min > max) {
+            throw new WebApplicationException(Response.status(400).entity("max should be smaller than min").build());
+        }
+        
         try {
             double randomMetres = RandomWebServiceClient.randomNumber(min, max);
             LengthUnit lengthUnit = new LengthUnit();
