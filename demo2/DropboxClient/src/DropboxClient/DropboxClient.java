@@ -17,6 +17,7 @@ import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONObject;
@@ -25,10 +26,23 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /**
- *
- * @author aleksi
  */
 public class DropboxClient {
+    public static void main(String[] args) throws URISyntaxException, IOException {
+        DropboxClient cli = new DropboxClient();
+        System.out.println("Enter auth code: ");
+        Scanner scanner = new Scanner(System.in);
+        String code = scanner.nextLine();
+        
+        String access_token = cli.accessToken(code);
+        System.out.println("access_token: " + access_token);
+        
+        String info = cli.getAccountInfo(access_token);
+        System.out.println("user info: " + access_token);
+        
+        cli.uploadFile(access_token, "/home/aleksi/koodi/jyu-soa-cloud/demo2/kuva.png");
+    }
+    
     
     public String accessToken(String codeStr) throws URISyntaxException, IOException {
         System.out.println("requesting access token for code " + codeStr);
@@ -80,7 +94,7 @@ public class DropboxClient {
         }
     }
     
-    public void getAccountInfo(String tokenStr) throws  URISyntaxException, IOException {
+    public String getAccountInfo(String tokenStr) throws  URISyntaxException, IOException {
         String access_token = ""+tokenStr; 
         StringBuilder accountInfoUri = new StringBuilder("https://api.dropbox.com/1/account/info");
         accountInfoUri.append("?access_token=");
@@ -98,6 +112,7 @@ public class DropboxClient {
             in.close();
             //print result
             System.out.println(response.toString());
+            return response.toString();
         } finally {
             connection.disconnect();
         }
@@ -109,7 +124,7 @@ public class DropboxClient {
         //required file path on local file system
         Path pathFile = Paths.get(sourcePath);
         byte[] data = Files.readAllBytes(pathFile);
-        StringBuilder accountInfoUri =new StringBuilder("https://api-content.dropbox.com/1/files_put/dropbox/MyFirstDApp_files/images/image_initial_uploaded.png");
+        StringBuilder accountInfoUri = new StringBuilder("https://api-content.dropbox.com/1/files_put/auto/MyFirstDApp_files/images/image_initial_uploaded.png");
         accountInfoUri.append("?access_token=");
         accountInfoUri.append(URLEncoder.encode(access_token,"UTF-8"));
         URL url = new URL(accountInfoUri.toString());

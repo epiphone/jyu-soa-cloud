@@ -42,7 +42,8 @@ public class RandomREST {
         DropboxClient cli = new DropboxClient();
         try {
             String token = cli.accessToken(code);
-            return code + token;
+            String info = cli.getAccountInfo(token);
+            return info;
         } catch (Exception ex) {
             Logger.getLogger(RandomREST.class.getName()).log(Level.SEVERE, null, ex);
             return "fail";
