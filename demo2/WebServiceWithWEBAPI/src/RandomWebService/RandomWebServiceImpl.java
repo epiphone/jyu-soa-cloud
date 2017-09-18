@@ -12,6 +12,6 @@ public class RandomWebServiceImpl implements RandomWebService {
     
     @Override
     public Double randomNumber(double min, double max) {
-        return Math.random() * max + min;
+        return min + Math.random() * (max - min);
     }
 }

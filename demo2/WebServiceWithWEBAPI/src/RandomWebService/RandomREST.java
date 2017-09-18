@@ -5,7 +5,6 @@
  */
 package RandomWebService;
 
-import clientToSOAPws.SOAPwsClient;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,8 +12,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
 import net.webservice_distance.LengthUnit;
 import net.webservice_distance.LengthUnitSoap;
 import net.webservice_distance.Lengths;
@@ -22,7 +23,7 @@ import net.webservice_distance.Lengths;
 /**
  * REST Web Service
  */
-@Path("random")
+@Path("distances")
 public class RandomREST {
 
     @Context
@@ -40,19 +41,15 @@ public class RandomREST {
      */
     @GET
     @Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
-    public Double[] getJson() {
+    public Double[] getJson(@DefaultValue("0") @QueryParam("min") double min, @DefaultValue("1000") @QueryParam("max") double max) {
         try {
-            double random = RandomWebServiceClient.randomNumber(0, 1000);
+            double randomMetres = RandomWebServiceClient.randomNumber(min, max);
             LengthUnit lengthUnit = new LengthUnit();
             LengthUnitSoap lengthUnitSOAP = lengthUnit.getLengthUnitSoap();
-            double lengthInMeters = lengthUnitSOAP.changeLengthUnit(random, Lengths.FEET, Lengths.METERS);
-            return new Double[] { random, lengthInMeters };
-//            return new JSONArray(Arrays.asList(new Double[] { random, lengthInMeters }));
+            double randomFeet = lengthUnitSOAP.changeLengthUnit(randomMetres, Lengths.METERS, Lengths.FEET);
+            return new Double[] { randomMetres, randomFeet };
         } catch (Exception ex) {
-            Logger.getLogger(SOAPwsClient.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-
-        return null;
-        // TODO err code
     }
 }

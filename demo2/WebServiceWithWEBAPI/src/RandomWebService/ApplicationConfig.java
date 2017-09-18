@@ -30,5 +30,4 @@ public class ApplicationConfig extends javax.ws.rs.core.Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(RandomREST.class);
     }
-    
 }
