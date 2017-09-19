@@ -1,8 +1,0 @@
-{
-  "name": "Analytics REST API",
-  "description": "A toy analytics REST API implementation. Coursework for a SOA course",
-  "repository": "https://github.com/epiphone/jyu-soa-cloud/",
-  "image": "heroku/python",
-  "addons": [
-  ]
-}
