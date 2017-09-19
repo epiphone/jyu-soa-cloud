@@ -4,14 +4,15 @@
 
 - Python 3
 - pipenv
+- MongoDB
 
-## Install
+## Setup
 
 - `pipenv install`
 
-## Run
+## Run locally
 
-- `TODO`
+- `python run.py`
 
 ## Deploy
 

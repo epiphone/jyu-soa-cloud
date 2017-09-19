@@ -4,7 +4,8 @@ App settings.
 import os
 
 
-MONGO_URI = os.environ.get('MONGODB_URI', 'mongodb://localhost:270127/analytics-rest-dev')
+MONGO_URI = os.environ.get('MONGODB_URI', 'mongodb://localhost/analytics-rest-dev')
+print('MONGO', MONGO_URI)
 
 # Enable reads (GET), inserts (POST) and DELETE for resources/collections
 # (if you omit this line, the API will default to ['GET'] and provide
