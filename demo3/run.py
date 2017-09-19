@@ -4,6 +4,7 @@ App starter script.
 import os
 
 from eve import Eve
+from eve_swagger import swagger, add_documentation
 
 
 if 'PORT' in os.environ:
@@ -14,11 +15,11 @@ else:
   host = '127.0.0.1'
 
 app = Eve()
-print('host=', host, 'port=', port)
+app.register_blueprint(swagger)
 
 @app.route('/test')
 def test():
-  return 'testinsssg'
+  return 'test'
 
 if __name__ == '__main__':
   app.run(host=host, port=port)

@@ -1,5 +1,7 @@
 # A simple analytics REST API
 
+Deployed at https://analytics-rest.herokuapp.com.
+
 ## Dependencies
 
 - Python 3
@@ -20,17 +22,7 @@
 
 ## API docs
 
-TODO
-
-GET     /events
-GET     /events/:id
-GET     /events?type=:type
-POST    /events/
-
-GET     /types/
-GET     /types/:id
-POST    /types/
-PATCH   /types/:id
+https://analytics-rest.herokuapp.com/api-docs
 
 ## Sources
 

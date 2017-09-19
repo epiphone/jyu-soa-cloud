@@ -18,6 +18,18 @@ ITEM_METHODS = ['GET', 'PATCH', 'DELETE']
 # Disable concurrency control:
 ENFORCE_IF_MATCH = False
 
+SWAGGER_INFO = {
+  'title': 'Analytics REST API',
+  'version': '1.0',
+  'description': 'A simple analytics REST API implementation; coursework for a SOA class.',
+  'contact': {
+    'name': 'AP',
+    'url': 'http://github.com/epiphone'
+  },
+  # 'schemes': ['http', 'https']
+}
+
+
 # Our API will expose two resources (MongoDB collections): 'people' and
 # 'works'. In order to allow for proper data validation, we define beaviour
 # and structure.

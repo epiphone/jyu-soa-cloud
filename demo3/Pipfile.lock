@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4bdf6af110971a517c7249cfbc77d805a4098c3010bdf32e848555f36eb94318"
+            "sha256": "b433f5abe4b890b1fac5ed51a03109feded9c56a605007074ce1fe51b5d953d6"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -44,6 +44,12 @@
                 "sha256:8bcfd0775880e00361b24856592c40635e847c5c51e2120ab873932a78a13076"
             ],
             "version": "==0.7.4"
+        },
+        "eve-swagger": {
+            "hashes": [
+                "sha256:c84f7297601c75be2eabecf451f1f66459d55b255dadb9fe6bb7005bd8f10616"
+            ],
+            "version": "==0.0.7"
         },
         "events": {
             "hashes": [
