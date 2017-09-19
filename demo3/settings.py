@@ -3,12 +3,8 @@ App settings.
 """
 import os
 
-MONGO_HOST = os.environ.get('MONGO_HOST', 'localhost')
-MONGO_PORT = os.environ.get('MONGO_PORT', 27017)
-MONGO_USERNAME = os.environ.get('MONGO_USERNAME')
-MONGO_PASSWORD = os.environ.get('MONGO_PASSWORD')
-MONGO_DBNAME = os.environ.get('MONGO_DBNAME', 'evedemo')
 
+MONGO_URI = os.environ.get('MONGODB_URI', 'mongodb://localhost:270127/analytics-rest-dev')
 
 # Enable reads (GET), inserts (POST) and DELETE for resources/collections
 # (if you omit this line, the API will default to ['GET'] and provide

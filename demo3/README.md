@@ -1,4 +1,4 @@
-# A simple REST API
+# A simple analytics REST API
 
 ## Dependencies
 
