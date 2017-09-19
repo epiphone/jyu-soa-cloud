@@ -16,5 +16,9 @@ else:
 app = Eve()
 print('host=', host, 'port=', port)
 
+@app.route('/test')
+def test():
+  return 'testinsssg'
+
 if __name__ == '__main__':
   app.run(host=host, port=port)

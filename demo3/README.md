@@ -12,7 +12,7 @@
 
 ## Run locally
 
-- `python run.py`
+- `python run.py` (or with auto-reloading etc: ``FLASK_DEBUG=1 FLASK_APP=run.py flask run`)
 
 ## Deploy
 
