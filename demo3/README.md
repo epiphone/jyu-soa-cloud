@@ -14,7 +14,7 @@ Deployed at https://analytics-rest.herokuapp.com.
 
 ## Run locally
 
-- `python run.py` (or with auto-reloading etc: ``FLASK_DEBUG=1 FLASK_APP=run.py flask run`)
+- `python run.py`
 
 ## Deploy
 
@@ -24,7 +24,12 @@ Deployed at https://analytics-rest.herokuapp.com.
 
 https://analytics-rest.herokuapp.com/api-docs
 
-## Sources
+/events/
+/types/
+/alerts/
+/users/
+
+## References
 
 https://github.com/heroku/python-getting-started
 https://github.com/pyeve/eve-demo

@@ -12,5 +12,7 @@ eve-swagger = "*"
 
 [dev-packages]
 pylint = "*"
+ipdb = "*"
+
 
 
