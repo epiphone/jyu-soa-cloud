@@ -22,12 +22,7 @@ Deployed at https://analytics-rest.herokuapp.com.
 
 ## API docs
 
-https://analytics-rest.herokuapp.com/api-docs
-
-/events/
-/types/
-/alerts/
-/users/
+Browse API docs [here](http://petstore.swagger.io/?url=https://analytics-rest.herokuapp.com/api-docs).
 
 ## References
 
