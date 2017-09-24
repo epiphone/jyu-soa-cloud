@@ -36,3 +36,5 @@ X_DOMAINS = [
   'http://petstore.swagger.io',
   'https://analytics-rest.herokuapp.com/'
 ]
+
+X_HEADERS = ['Content-Type', 'If-Match']
