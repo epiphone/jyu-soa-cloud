@@ -23,6 +23,7 @@ Deployed at https://analytics-rest.herokuapp.com.
 ## API docs
 
 Browse API docs [here](http://petstore.swagger.io/?url=https://analytics-rest.herokuapp.com/api-docs).
+[Presentation slides](goo.gl/RTfuLM).
 
 ## References
 
