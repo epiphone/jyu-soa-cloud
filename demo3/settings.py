@@ -23,7 +23,7 @@ SWAGGER_INFO = {
     'name': 'AP',
     'url': 'http://github.com/epiphone'
   },
-  # 'schemes': ['http', 'https']
+  'schemes': ['http', 'https']
 }
 
 DOMAIN = resources.DOMAIN
