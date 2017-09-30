@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2943995723f0dc46ba2110e1efd2738796d03e84fdc12c60b7f6408f78c603d6"
+            "sha256": "9aedc6398a2ba4d8f66ad0157366e25e2de227b907e39a2551163fd38e94dc12"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -44,10 +44,6 @@
                 "sha256:8bcfd0775880e00361b24856592c40635e847c5c51e2120ab873932a78a13076"
             ],
             "version": "==0.7.4"
-        },
-        "eve-swagger": {
-            "git": "https://github.com/epiphone/eve-swagger.git",
-            "ref": "fix-if-match-header-required"
         },
         "events": {
             "hashes": [

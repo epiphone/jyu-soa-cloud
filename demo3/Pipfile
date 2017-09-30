@@ -4,9 +4,8 @@ verify_ssl = true
 
 [packages]
 
-eve = "*"
+Eve = "*"
 gunicorn = "*"
-eve-swagger = {ref = "fix-if-match-header-required", git = "https://github.com/epiphone/eve-swagger.git"}
 
 
 

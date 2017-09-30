@@ -4,12 +4,12 @@ App starter script.
 import os
 
 from eve import Eve
-from eve_swagger import swagger
+# from eve_swagger import swagger
 from flask import jsonify
 
 
 app = Eve(settings='settings.py')
-app.register_blueprint(swagger)
+# app.register_blueprint(swagger)
 
 # Error handler:
 def handle_error(e):
