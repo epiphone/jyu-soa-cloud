@@ -8,6 +8,7 @@ eve = "*"
 gunicorn = "*"
 "eve-swagger" = {ref = "fix_if_match_header_required", git = "https://github.com/epiphone/eve-swagger.git"}
 pyjwt = "*"
+"flask-cors" = "*"
 
 
 

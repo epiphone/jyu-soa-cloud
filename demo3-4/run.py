@@ -6,11 +6,13 @@ import os
 from eve import Eve
 from eve_swagger import add_documentation, swagger
 from flask import abort, jsonify, request
+from flask_cors import CORS
 
 from auth import auth_blueprint, JWTAuth, on_insert_users
 
 
 app = Eve(auth=JWTAuth, settings='settings.py')
+CORS(app)
 app.register_blueprint(swagger)
 app.register_blueprint(auth_blueprint)
 
