@@ -16,9 +16,17 @@ app.register_blueprint(auth_blueprint)
 
 app.on_insert_users += on_insert_users
 
+def on_inserted_users(items):
+  # Add a duplicate user_id field to user to allow resource-based auth: https://github.com/pyeve/eve/issues/107
+  users = app.data.driver.db['users']
+  for item in items:
+    users.update_one({'_id': item['_id']}, {'$set': {'user_id': item['_id']}})
 
-# Error handler:
+app.on_inserted_users += on_inserted_users
+
+
 def handle_error(e):
+  """Custom error handler."""
   if not hasattr(e, 'code'):
     e.code = 500
     e.description = 'internal server error'
@@ -36,26 +44,18 @@ for code in app.config['STANDARD_ERRORS']:
 # Display the custom /tokens path on Swagger docs:
 add_documentation({'paths': {'/tokens': {'post': {
   'summary': 'JWT Authentication',
-  'parameters': [
-    {
-      'in': 'body',
-      'name': 'credentials',
-      'required': True,
-      'schema': {
-        'type': 'object',
-        'properties': {
-          'email': {
-            'type': 'string',
-            'required': True
-          },
-          'password': {
-            'type': 'string',
-            'required': True
-          }
-        }
+  'parameters': [{
+    'in': 'body',
+    'name': 'credentials',
+    'required': True,
+    'schema': {
+      'type': 'object',
+      'properties': {
+        'email': {'type': 'string', 'required': True},
+        'password': {'type': 'string', 'required': True}
       }
     }
-  ],
+  }],
   'responses': {
     '201': {'description': 'JWT token with user info encoded in payload'},
     '404': {'description': 'User not found'},

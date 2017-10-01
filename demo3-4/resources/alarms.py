@@ -1,5 +1,5 @@
 alarms = {
-  'auth_field': 'user',
+  'auth_field': 'user_id',
   'public_methods': ['GET'],
   'schema': {
     'name': {
@@ -9,7 +9,7 @@ alarms = {
     'description': {
       'type': 'string',
     },
-    'category': {
+    'category_id': {
       'type': 'objectid',
       'required': True,
       'data_relation': {
@@ -17,7 +17,7 @@ alarms = {
         'embeddable': True
       },
     },
-    'user': {
+    'user_id': {
       'type': 'objectid',
       'required': True,
       'data_relation': {
@@ -29,9 +29,10 @@ alarms = {
 }
 
 user_alarms = {
+  'auth_field': 'user_id',
   'schema': alarms['schema'],
   'datasource': {'source': 'alarms'},
-  'url': 'users/<string:user>/alarms',
+  'url': 'users/<string:user_id>/alarms',
   'resource_methods': ['GET'],
   'item_methods': [],
   'public_methods': ['GET']

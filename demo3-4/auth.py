@@ -2,6 +2,7 @@
 Authentication- and authorization-related functionality.
 """
 import jwt
+from bson import ObjectId
 from flask import abort, Blueprint, current_app as app, jsonify, request
 from datetime import datetime, timedelta
 from eve.auth import TokenAuth
@@ -17,13 +18,14 @@ JWT_SECRET = 'some_super_secret'  # TODO separate from version control
 auth_blueprint = Blueprint('auth', __name__)
 
 class JWTAuth(TokenAuth):
+  """JWT token auth implementation."""
   def check_auth(self, token, allowed_roles, _resource, _method):
     try:
       payload = verify_token(token)
     except Exception as e:
       abort(401, str(e))
 
-    self.set_request_auth_value(payload['id'])
+    self.set_request_auth_value(ObjectId(payload['id']))
     if not allowed_roles or any(r in allowed_roles for r in payload['roles']):
       return payload
 

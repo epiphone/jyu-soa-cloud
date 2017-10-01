@@ -8,7 +8,7 @@ events = {
     'timestamp': {
       'type': 'integer'
     },
-    'category': {
+    'category_id': {
       'type': 'objectid',
       'required': True,
       'data_relation': {

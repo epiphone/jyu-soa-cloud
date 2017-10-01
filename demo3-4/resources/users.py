@@ -8,11 +8,11 @@ users = {
     'url': 'regex("[\w@\.]+")',
     'field': 'email'
   },
-  'auth_field': 'email',
+  'auth_field': 'user_id',
   'cache_control': '',
   'cache_expires': 0,
   'datasource': {
-    'projection': {'password': 0} # hide password hash from return values
+    'projection': {'password': 0, 'user_id': 0} # hide password hash from return values
   },
   'public_methods': ['GET', 'POST'],
   'schema': {
