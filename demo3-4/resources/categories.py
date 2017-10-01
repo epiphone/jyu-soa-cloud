@@ -25,6 +25,7 @@ user_categories = {
   'auth_field': 'user_id',
   'schema': categories['schema'],
   'datasource': {'source': 'categories'},
+  'disable_documentation': True,
   'url': 'users/<string:user_id>/categories',
   'resource_methods': ['GET'],
   'item_methods': [],

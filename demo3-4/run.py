@@ -44,27 +44,94 @@ for code in app.config['STANDARD_ERRORS']:
 
 
 # Display the custom /tokens path on Swagger docs:
-add_documentation({'paths': {'/tokens': {'post': {
-  'summary': 'JWT Authentication',
-  'parameters': [{
-    'in': 'body',
-    'name': 'credentials',
-    'required': True,
-    'schema': {
-      'type': 'object',
-      'properties': {
-        'email': {'type': 'string', 'required': True},
-        'password': {'type': 'string', 'required': True}
+add_documentation({
+  'paths': {
+    '/tokens': {'post': {
+      'summary': 'JWT Authentication',
+      'parameters': [{
+        'in': 'body',
+        'name': 'credentials',
+        'required': True,
+        'schema': {
+          'type': 'object',
+          'properties': {
+            'email': {'type': 'string', 'required': True},
+            'password': {'type': 'string', 'required': True}
+          }
+        }
+      }],
+      'responses': {
+        '201': {'description': 'JWT token with user info encoded in payload'},
+        '404': {'description': 'User not found'},
+        '422': {'description': 'Invalid parameters'}
+      },
+      'tags': ['Tokens']
+    }},
+    '/users/{userId}/categories': {
+      'get': {
+        'summary': 'Retrieves one or more of user\'s categories',
+        'parameters': [
+          {'$ref': '#/parameters/User__id'}
+        ],
+        'responses': {
+          '200': {
+            'description': 'An array of user\'s categories',
+            'schema': {
+              'type': 'array',
+              'items': {
+                '$ref': '#/definitions/category'
+              }
+            }
+          }
+        },
+        'tags': ['User categories'],
+        'security': [{'Authorization': []}]
+      }
+    },
+    '/users/{userId}/alarms': {
+      'get': {
+        'summary': 'Retrieves one or more of user\'s alarms',
+        'parameters': [
+          {'$ref': '#/parameters/User__id'}
+        ],
+        'responses': {
+          '200': {
+            'description': 'An array of user\'s alarms',
+            'schema': {
+              'type': 'array',
+              'items': {
+                '$ref': '#/definitions/Alarm'
+              }
+            }
+          }
+        },
+        'tags': ['User alarms'],
+        'security': [{'Authorization': []}]
+      }
+    },
+    '/categories/{categoryId}/events': {
+      'get': {
+        'summary': 'Retrieves one or more of category\'s events',
+        'parameters': [
+          {'$ref': '#/parameters/category__id'}
+        ],
+        'responses': {
+          '200': {
+            'description': 'An array of category\'s events',
+            'schema': {
+              'type': 'array',
+              'items': {
+                '$ref': '#/definitions/Event'
+              }
+            }
+          }
+        },
+        'tags': ['Category events'],
+        'security': [{'Authorization': []}]
       }
     }
-  }],
-  'responses': {
-    '201': {'description': 'JWT token with user info encoded in payload'},
-    '404': {'description': 'User not found'},
-    '422': {'description': 'Invalid parameters'}
-  },
-  'tags': ['Tokens']
-}}}})
+  }
+})
 
 # Display auth header on Swagger docs (https://github.com/pyeve/eve-swagger/issues/42):
 add_documentation({'securityDefinitions': {

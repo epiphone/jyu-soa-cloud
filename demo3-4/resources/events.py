@@ -22,6 +22,7 @@ events = {
 category_events = {
   'schema': events['schema'],
   'datasource': {'source': 'events'},
+  'disable_documentation': True,
   'url': 'categories/<string:category>/events',
   'resource_methods': ['GET'],
   'item_methods': [],

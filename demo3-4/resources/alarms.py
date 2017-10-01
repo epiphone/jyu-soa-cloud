@@ -32,6 +32,7 @@ user_alarms = {
   'auth_field': 'user_id',
   'schema': alarms['schema'],
   'datasource': {'source': 'alarms'},
+  'disable_documentation': True,
   'url': 'users/<string:user_id>/alarms',
   'resource_methods': ['GET'],
   'item_methods': [],
