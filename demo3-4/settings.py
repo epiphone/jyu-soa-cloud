@@ -30,11 +30,4 @@ DOMAIN = resources.DOMAIN
 XML = False
 
 X_DOMAINS = '*'
-# X_DOMAINS = [
-#   'http://localhost:5000',
-#   'http://editor.swagger.io',
-#   'http://petstore.swagger.io',
-#   'https://analytics-rest.herokuapp.com/'
-# ]
-
 X_HEADERS = ['api_key', 'Authorization', 'Content-Type', 'If-Match']

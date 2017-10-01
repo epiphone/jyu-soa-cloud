@@ -19,13 +19,22 @@ auth_blueprint = Blueprint('auth', __name__)
 
 class JWTAuth(TokenAuth):
   """JWT token auth implementation."""
-  def check_auth(self, token, allowed_roles, _resource, _method):
+  def check_auth(self, token, allowed_roles, resource, _method):
     try:
       payload = verify_token(token)
     except Exception as e:
       abort(401, str(e))
 
     self.set_request_auth_value(ObjectId(payload['id']))
+    if 'admin' in payload.get('roles', []):
+      item_id = request.view_args.get('_id')
+      if item_id:
+        item = app.data.driver.db[resource].find_one(ObjectId(item_id))
+        if resource == 'users' and item_id != payload['id'] and 'admin' in item.get('roles', []):
+          abort(401, 'cannot manage other admin users')
+        if item and 'user_id' in item:
+          self.set_request_auth_value(item['user_id'])
+
     if not allowed_roles or any(r in allowed_roles for r in payload['roles']):
       return payload
 
