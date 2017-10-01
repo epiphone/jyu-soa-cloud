@@ -1,4 +1,6 @@
 events = {
+  'public_methods': ['GET', 'POST'],
+  'public_item_methods': ['GET'],
   'schema': {
     'meta': {
       'type': 'dict'
@@ -22,5 +24,6 @@ category_events = {
   'datasource': {'source': 'events'},
   'url': 'categories/<string:category>/events',
   'resource_methods': ['GET'],
-  'item_methods': []
+  'item_methods': [],
+  'public_methods': ['GET']
 }

@@ -6,7 +6,8 @@ verify_ssl = true
 
 eve = "*"
 gunicorn = "*"
-eve-swagger = {ref = "fix_if_match_header_required", git = "https://github.com/epiphone/eve-swagger.git"}
+"eve-swagger" = {ref = "fix_if_match_header_required", git = "https://github.com/epiphone/eve-swagger.git"}
+pyjwt = "*"
 
 
 
@@ -14,6 +15,3 @@ eve-swagger = {ref = "fix_if_match_header_required", git = "https://github.com/e
 
 pylint = "*"
 ipdb = "*"
-
-
-

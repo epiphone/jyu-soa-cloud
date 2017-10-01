@@ -1,4 +1,6 @@
 alarms = {
+  'auth_field': 'user',
+  'public_methods': ['GET'],
   'schema': {
     'name': {
       'type': 'string',
@@ -31,5 +33,6 @@ user_alarms = {
   'datasource': {'source': 'alarms'},
   'url': 'users/<string:user>/alarms',
   'resource_methods': ['GET'],
-  'item_methods': []
+  'item_methods': [],
+  'public_methods': ['GET']
 }
