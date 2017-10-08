@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package RandomWebService;
+package RandomWebService.rest;
 
+import RandomWebService.RandomWebServiceClient;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +26,7 @@ import net.webservice_distance.Lengths;
 /**
  * REST Web Service
  */
-@Path("distances")
+@Path("/distances")
 public class RandomREST {
 
     @Context
@@ -34,8 +35,7 @@ public class RandomREST {
     /**
      * Creates a new instance of RandomREST
      */
-    public RandomREST() {
-    }
+    public RandomREST() {}
 
     /**
      * Retrieves representation of an instance of RandomWebService.RandomREST
@@ -55,7 +55,8 @@ public class RandomREST {
             double randomFeet = lengthUnitSOAP.changeLengthUnit(randomMetres, Lengths.METERS, Lengths.FEET);
             return new Double[] { randomMetres, randomFeet };
         } catch (Exception ex) {
-            return null;
+            System.err.print(ex);
+            throw new WebApplicationException(Response.status(400).entity(ex.toString()).build());
         }
     }
 }

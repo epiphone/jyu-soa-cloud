@@ -8,10 +8,10 @@
 <body> 
 
 <h1><b>Random API</b></h1>
-<p>Random values API, used for test mocks etc. Uses a custom <a href='http://localhost:9999/ws/random?wsdl'>random value web service</a> and an external <a href='http://www.webservicex.net/New/Home/ServiceDetail/21'>distance converter webservice</a>.
+<p>Random values API, used for test mocks etc. Uses a custom <a href='/RandomWebServiceImpl?wsdl'>random value web service</a> and an external <a href='http://www.webservicex.net/New/Home/ServiceDetail/21'>distance converter webservice</a>.
 
 <h2>Endpoints:</h2>
-<b>GET</b> <a href='/WebServiceWithWEBAPI/webresources/distances'>/distances</a>
+<b>GET</b> <a href='/webresources/distances'>/distances</a>
 <p>Returns a random distance in feet and metres.</p>
 <p>Query parameters:</p>
 <ul>
@@ -20,8 +20,8 @@
 </ul>
 <p>Examples:</p>
 <ul>
-  <li>Random distance between 0 and 1000 metres: <a href='/WebServiceWithWEBAPI/webresources/distances'>/distances</a></li>
-  <li>Random distance between 1 and 2 metres: <a href='/WebServiceWithWEBAPI/webresources/distances?min=1&max=2'>/distances?min=1&max=2</a></li>
+  <li>Random distance between 0 and 1000 metres: <a href='/webresources/distances'>/distances</a></li>
+  <li>Random distance between 1 and 2 metres: <a href='/webresources/distances?min=1&max=2'>/distances?min=1&max=2</a></li>
 </ul>
   
 
